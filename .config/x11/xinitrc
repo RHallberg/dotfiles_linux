@@ -13,6 +13,13 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 else
 	. "$HOME/.xprofile"
 fi
+
+setxkbmap se
+picom --backend glx &
+pipewire &
+xrandr --output DP-4 --rotate left --right-of DP-0
+feh --bg-scale ~/Pictures/wallpaper.jpg &
 # Activate dbus variables
+#
 dbus-update-activation-environment --all
 dbus-launch ssh-agent dwm
