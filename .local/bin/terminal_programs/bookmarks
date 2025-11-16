@@ -1,2 +1,6 @@
 #!/bin/sh
-grep -F "$(awk '{$1="";print $0}' ~/Documents/bookmarks/bookmarks.txt | dmenu -i -p "Open bookmark:" )" ~/Documents/bookmarks/bookmarks.txt | awk '{print $1}' | xargs brave
+choice="$(awk '{$1=""; print $0}' ~/Documents/bookmarks/bookmarks.txt | dmenu -i -p "Open bookmark:")"
+
+[ -z "$choice" ] && exit 1
+
+grep -F "$choice" ~/Documents/bookmarks/bookmarks.txt | awk '{print $1}' | xargs brave
