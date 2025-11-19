@@ -1,0 +1,19 @@
+#!/bin/sh
+source ~/.zprofile
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
+	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+else
+	. "$HOME/.xprofile"
+fi
+
+setxkbmap se
+xrandr --output DisplayPort-1 --rotate left --right-of DisplayPort-2
+xrandr --output HDMI-A-3 --left-of DisplayPort-2
+find ~/Pictures/wallpapers/ -type f | head -n 1 | xargs feh --bg-scale
+setxkbmap -option ctrl:swapcaps
+xrdb ~/.config/x11/xresources
+# Activate dbus variables
+#
+dbus-update-activation-environment --systemd DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS PATH
+dbus-launch ssh-agent dwm
+picom --backend glx &
