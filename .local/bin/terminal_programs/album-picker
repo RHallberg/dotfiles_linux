@@ -1,0 +1,8 @@
+#!/bin/sh
+choice="$(mpc listall -f "%Artist% -- %Album%" | uniq | dmenu -i -p "Select album")"
+[ -z "$choice" ] && exit 1
+album="$(echo "$choice" | awk -F"--" '{sub(/^ +| +$/, "", $2);printf("%s",$2)}')"
+artist="$(echo "$choice" | awk -F"--" '{sub(/^ +| +$/, "", $1);printf("%s",$1)}')"
+
+mpc clear
+mpc search artist "$artist" album "$album" | mpc add && mpc play
