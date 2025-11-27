@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dmenu -p "Calculate: " <&- | bc | xargs notify-send
