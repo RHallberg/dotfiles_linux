@@ -4,7 +4,7 @@
 # %s in URL denotes where query goes
 inputfile=~/Documents/data/search_engines/engines.csv
 
-choice=$(awk -F";" '{print $1}' "$inputfile" | dmenu -p "Where to search?")
+choice=$(awk -F";" '{print $1}' "$inputfile" | dmenu -i -p "Where to search?")
 
 [ -z "$choice" ] && exit 1
 
