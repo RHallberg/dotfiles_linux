@@ -8,7 +8,7 @@ choice=$(awk -F";" '{print $1}' "$inputfile" | dmenu -i -p "Where to search?")
 
 [ -z "$choice" ] && exit 1
 
-option=$(rg "$choice" "$inputfile")
+option=$(rg "^$choice;" "$inputfile")
 
 query=$(dmenu -p "Search $choice" <&-)
 
