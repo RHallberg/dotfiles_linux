@@ -1,11 +1,14 @@
 font-family = "IosevkaTermSlab Nerd Font Mono"
-font-size = 13
+font-size = 14.5
+font-variation = wght=100
+font-style = medium
+freetype-load-flags = hinting,no-force-autohint,no-monochrome,autohint
 
 grapheme-width-method = unicode
 
 theme = Catppuccin Latte
 
-cursor-opacity = 0.7
+cursor-opacity = 1.0
 cursor-style = block
 cursor-style-blink = true
 
@@ -25,10 +28,11 @@ clipboard-read = allow
 copy-on-select = true
 right-click-action = context-menu
 
-macos-option-as-alt = left
-
+confirm-close-surface = false
+resize-overlay = never
 
 # keybinds
 
-keybind = super+r>super+r=text:ranger\n
+keybind = super+r>super+r=text:ranger 2>/dev/null\n
 keybind = super+h>super+h=text:~\n
+
