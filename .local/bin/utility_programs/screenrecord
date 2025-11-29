@@ -1,0 +1,16 @@
+#!/bin/sh
+PIDFILE="/tmp/screen_recording.pid"
+
+if [ -f "$PIDFILE" ]; then
+  pid=$(awk 'NR == 1 {print $1; exit}' "$PIDFILE")
+  kill -INT "$pid"
+  rm "$PIDFILE"
+else
+  ARGS=$(slop -f "-video_size %wx%h -i :1.0+%x,%y")
+  filename="$(date +rec_%Y%m%d_%H%M%S).mkv"
+  [ -z "$ARGS" ] && exit 1
+  ffmpeg -f x11grab $ARGS  \
+    -framerate 60 -preset fast \
+    ~/Videos/recordings/"$filename" 2>/dev/null &
+  echo $! > "$PIDFILE"
+fi
