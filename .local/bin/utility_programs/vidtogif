@@ -1,0 +1,7 @@
+#!/bin/sh
+infile=$1
+fps=${2:-24}
+outfile=$(echo "$infile" | sed 's/\.\w\+$/\.gif/')
+ffmpeg -i "$infile" \
+    -vf "fps=$fps,scale=iw:ih:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 "$outfile"
