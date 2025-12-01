@@ -21,10 +21,8 @@ alias \
 	bc="bc -ql" \
 	rsync="rsync -vrPlu" \
 	mkd="mkdir -pv" \
-	yt="yt-dlp --embed-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ytt="yt --skip-download --write-thumbnail" \
-	ffmpeg="ffmpeg -hide_banner"
+	ffmpeg="ffmpeg -hide_banner" \
+  pacupdate="pacman -Syu && setxkbmap se && setxkbmap -option ctrl:swapcaps" \
 
 # Colorize commands when possible.
 alias \
@@ -34,12 +32,13 @@ alias \
 	ip="ip -color=auto"
 
 alias \
+  copy="xclip -selection clipboard" \
+  copyl="tr -d '\n' | xclip -selection clipboard" \
+  pasta="xclip -o" \
 	ka="killall" \
 	trem="transmission-remote" \
 	sdn="shutdown -h now" \
 	e="$EDITOR" \
 	v="$EDITOR" \
 	p="pacman" \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
+  nohib="xset -dpms && xset s off" \
