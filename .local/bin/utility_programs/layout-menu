@@ -1,0 +1,21 @@
+#!/bin/sh
+
+xsetroot -name $(awk '
+{ print NR " " $0 }
+' << 'OPTIONS' | dmenu -i -p "Layout:" | awk '{printf("fsignal:%d",$1)}'
+Tile
+Fullscreen
+Floating
+Spiral
+Dwindle
+Deck
+Bstack
+HBstack
+Grid
+Nrowgrid
+Hgrid
+Nogapgrid
+Cmaster
+Cfmaster
+OPTIONS
+)
