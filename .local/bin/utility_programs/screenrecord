@@ -3,10 +3,11 @@ PIDFILE="/tmp/screen_recording.pid"
 
 if [ -f "$PIDFILE" ]; then
   pid=$(awk 'NR == 1 {print $1; exit}' "$PIDFILE")
-  kill -INT "$pid"
   rm "$PIDFILE"
+  kill -INT "$pid"
 else
-  ARGS=$(slop -f "-video_size %wx%h -i :1.0+%x,%y")
+  scrn=$(xrandr | awk '{print $2;exit}' | tr -d ':')
+  ARGS=$(slop -f "-video_size %wx%h -i :$scrn.0+%x,%y")
   filename="$(date +rec_%Y%m%d_%H%M%S).mkv"
   [ -z "$ARGS" ] && exit 1
   ffmpeg -f x11grab $ARGS  \
